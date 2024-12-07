@@ -1,6 +1,9 @@
 <div class="main_wrap">
   <div class="main">
     <div class="main_body">
+      <p>Batch:- {{ year }}{{ daycount }}<br /></p>
+      <p>Day Letter:- {{ dayLetter }}<br /></p>
+
       <form [formGroup]="myForm" (ngSubmit)="result()">
         <div class="sec">
           <input
@@ -24,7 +27,6 @@
         </button>
       </form>
 
-      <p>Batch:- {{ year }}{{ daycount }}<br /></p>
       <p>Calculated Date:- {{ calDya | date }}</p>
 
       <table>

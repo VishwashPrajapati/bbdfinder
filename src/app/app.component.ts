@@ -18,19 +18,27 @@ export class AppComponent {
   oneTwoDays: any | undefined;
   oneFiveDays: any | undefined;
   calDya: any | undefined;
+  today: any | undefined;
+
+  days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  letter = ["A", "B", "C", "D", "E", "F", "G"];
+  dayLetter = "";
+
 
   myForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
+    this.today = new Date();
+
     this.myForm = this.fb.group({
-      dateValue: ['', Validators.required],
+      dateValue: [this.today, Validators.required],
       numberValue: ['', Validators.required],
     });
-    var todayDate = new Date();
-    console.log('todayDate', todayDate);
-    this.getData(todayDate);
+    this.dayLetter = this.letter[this.days.findIndex((x) => x === this.today.toString().split(" ")[0])]
+  
+    this.getData(this.today);
   }
-  OnInit() {}
+  OnInit() { }
 
   result() {
     const formsValues = this.myForm.value;
@@ -47,6 +55,7 @@ export class AppComponent {
     this.year = Number(new Date(data).getFullYear().toString().substr(-2));
     var startdate = new Date('Jan 01,' + this.year);
     var currDate = new Date(data);
+    console.log("new data ", currDate.getDate())
     var untilltime = currDate.getTime() - startdate.getTime();
 
     this.thirteeDays = this.getFixedDate(currDate, 30);
