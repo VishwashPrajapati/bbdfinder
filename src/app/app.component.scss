@@ -2,8 +2,8 @@
   width: 100%;
   height: auto;
   font-size: 2rem;
-  @media (max-width:768px) {
-    font-size: 1.5rem;
+  @media screen and (max-width:768px) {
+    font-size: 1rem;
   }
 }
 .main_body {
@@ -32,11 +32,11 @@ form {
 button {
   margin: 0.5rem auto;
   margin-top: 0.5rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
   border-radius: 0.5rem;
 
-  @media (max-width:768px) {
-    font-size: 1.5rem;
+  @media screen and (max-width:768px) {
+    font-size: 1rem;
   }
   padding: 0.5rem 2rem;
 }
@@ -48,7 +48,7 @@ input {
   border: 2px solid gray;
   font-size: 1.5rem;
   border-radius: 0.5rem;
-  @media (max-width:768px) {
+  @media screen and (max-width:768px) {
     font-size: 1rem;
   }  color: black;
 }
