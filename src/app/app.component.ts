@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'bbdfinder';
 
   year: number | undefined;
-  daycount: number | undefined;
+  daycount: any;
   thirteeDays: any | undefined;
   fiftyDays: any | undefined;
   sixtyThreeDays: any | undefined;
@@ -35,7 +35,7 @@ export class AppComponent {
       numberValue: ['', Validators.required],
     });
     this.dayLetter = this.letter[this.days.findIndex((x) => x === this.today.toString().split(" ")[0])]
-  
+
     this.getData(this.today);
   }
   OnInit() { }
@@ -55,7 +55,6 @@ export class AppComponent {
     this.year = Number(new Date(data).getFullYear().toString().substr(-2));
     var startdate = new Date('Jan 01,' + this.year);
     var currDate = new Date(data);
-    console.log("new data ", currDate.getDate())
     var untilltime = currDate.getTime() - startdate.getTime();
 
     this.thirteeDays = this.getFixedDate(currDate, 30);
@@ -66,14 +65,17 @@ export class AppComponent {
     this.oneFiveDays = this.getFixedDate(currDate, 150);
 
     this.daycount = Math.floor(untilltime / (1000 * 60 * 60 * 24)) + 1;
-    console.log(this.daycount);
 
-    if (this.daycount > 365) {
+    if (this.daycount >= 365) {
       this.daycount = 365;
-    } else if (this.daycount < 100) {
-      this.daycount = this.daycount;
-      console.log('from dafshgsdgdogjo', this.daycount);
     }
+    if (this.daycount >= 10 && this.daycount <= 99) {
+      this.daycount = "0" + this.daycount;
+    }
+    if (this.daycount <= 9) {
+      this.daycount = "00" + this.daycount;
+    }
+
   }
 
   calculateDay(day: any, value: any) {
