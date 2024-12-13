@@ -19,6 +19,8 @@ export class AppComponent {
   oneFiveDays: any | undefined;
   calDya: any | undefined;
   today: any | undefined;
+  isVisible = false;
+
 
   days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   letter = ["A", "B", "C", "D", "E", "F", "G"];
@@ -29,16 +31,19 @@ export class AppComponent {
 
   constructor(private fb: FormBuilder) {
     this.today = new Date();
-
     this.myForm = this.fb.group({
       dateValue: [this.today, Validators.required],
       numberValue: ['', Validators.required],
     });
+    console.log(this.myForm)
     this.dayLetter = this.letter[this.days.findIndex((x) => x === this.today.toString().split(" ")[0])]
 
     this.getData(this.today);
   }
   OnInit() { }
+  activateToggle(ref:any){
+    ref.opened = true
+  }
 
   result() {
     const formsValues = this.myForm.value;
@@ -47,8 +52,8 @@ export class AppComponent {
   }
 
   getFixedDate(selectedDate: Date, nextDay: any) {
-    var datebyValue = new Date(selectedDate); // Now
-    return datebyValue.setDate(datebyValue.getDate() + nextDay); // Set now + 30 days as the new date
+    var datebyValue = new Date(selectedDate);
+    return datebyValue.setDate(datebyValue.getDate() + nextDay);
   }
 
   getData(data: Date | string) {
@@ -75,7 +80,7 @@ export class AppComponent {
     if (this.daycount <= 9) {
       this.daycount = "00" + this.daycount;
     }
-
+      this.isVisible = true;
   }
 
   calculateDay(day: any, value: any) {

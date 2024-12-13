@@ -1,33 +1,38 @@
 <div class="main_wrap">
   <div class="main">
-    <div class="main_body">
+    <div class="main_loader" *ngIf="!isVisible">
+      <div class="loader"></div>
+    </div>
+
+    <div class="main_body" *ngIf="isVisible">
+
       <p>Batch:- {{ year }}{{ daycount }}<br /></p>
       <p>Day Letter:- {{ dayLetter }}<br /></p>
 
       <form [formGroup]="myForm" (ngSubmit)="result()">
         <div class="sec">
-          <input
-            type="date"
-            id="date"
-            class="date"
-            formControlName="dateValue"
-          />
+          <input matInput [matDatepicker]="picker" (click)="activateToggle(picker)" formControlName="dateValue"
+            placeholder="Choose a Date">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
         </div>
+        <!-- <div class="sec">
+          <input type="date" id="date" class="date" formControlName="dateValue" placeholder="Select Date" />
+        </div> -->
         <div class="sec">
-          <input
-            type="number"
-            id="nextDay"
-            class="nextDay"
-            formControlName="numberValue"
-            placeholder="Calculate Days"
-          />
+          <input type="number" id="nextDay" class="nextDay" formControlName="numberValue" placeholder="Shelf Life" />
         </div>
-        <button class="button" [disabled]="myForm.invalid" type="submit">
-          Calculate
-        </button>
+        <div class="buttons">
+          <button class="button" mat-flat-button [disabled]="myForm.invalid" type="submit">
+            Calculate
+          </button>
+          <button class="button" mat-flat-button type="reset">
+            Clear
+          </button>
+        </div>
       </form>
 
-      <p>Calculated Date:- {{ calDya | date }}</p>
+      <p *ngIf="calDya">Calculated Date:- {{ calDya | date }}</p>
 
       <table>
         <th colspan="2" align="center">

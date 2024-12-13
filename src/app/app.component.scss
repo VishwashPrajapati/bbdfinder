@@ -1,10 +1,44 @@
+/* HTML: <div class="loader"></div> */
+.main_loader{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(103, 102, 102, 0.166);
+.loader {
+  width: 45px;
+  aspect-ratio: 1;
+  --c: no-repeat linear-gradient(#000 0 0);
+  background: 
+    var(--c) 0%   50%,
+    var(--c) 50%  50%,
+    var(--c) 100% 50%;
+  background-size: 20% 100%;
+  animation: l1 1s infinite linear;
+}
+}
+.mat-datepicker-toggle{
+  position: absolute;
+  right: 0.5rem;
+}
+
+@keyframes l1 {
+  0%  {background-size: 20% 100%,20% 100%,20% 100%}
+  33% {background-size: 20% 10% ,20% 100%,20% 100%}
+  50% {background-size: 20% 100%,20% 10% ,20% 100%}
+  66% {background-size: 20% 100%,20% 100%,20% 10% }
+  100%{background-size: 20% 100%,20% 100%,20% 100%}
+}
+
+
 .main {
   width: 100%;
   height: auto;
   font-size: 2rem;
 
   @media screen and (max-width:768px) {
-    font-size: 1rem;
+    font-size: 1.3rem;
   }
 }
 
@@ -18,6 +52,7 @@
 }
 
 .sec {
+  position: relative;
   display: flex;
   align-items: center;
 }
@@ -69,12 +104,20 @@ input {
     -moz-appearance: none;
   }
 }
+.buttons{
+  display: flex;
+  justify-content: space-between;
+}
 
 table,
 th,
 td {
   border: 1px solid black;
   border-collapse: collapse;
+}
+table{
+  width: 90%;
+  margin: 0.5rem auto;
 }
 
 td {
