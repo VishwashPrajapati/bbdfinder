@@ -1,125 +1,190 @@
-/* HTML: <div class="loader"></div> */
-.main_loader{
-  width: 100%;
-  height: 100vh;
+$large_fonts: 2rem;
+$small_fonts: 1.2rem;
+
+.main_wrap {
+  position: relative;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  background-color: #f4f4f9;
+}
+.main {
+  margin: 0 auto;
+  width: 80%;
+  margin-top: 2rem;
+  height: 100vh;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+
+    margin-top: 0rem;
+  }
+}
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  height: auto;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.calculated-date {
+  margin: 0.8rem 0;
+  text-align: center;
+}
+
+.tab-buttons {
+  display: flex;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
   justify-content: center;
   align-items: center;
-  background-color: rgba(103, 102, 102, 0.166);
-.loader {
-  width: 45px;
-  aspect-ratio: 1;
-  --c: no-repeat linear-gradient(#000 0 0);
-  background: 
-    var(--c) 0%   50%,
-    var(--c) 50%  50%,
-    var(--c) 100% 50%;
-  background-size: 20% 100%;
-  animation: l1 1s infinite linear;
-}
-}
-.mat-datepicker-toggle{
-  position: absolute;
-  right: 0.5rem;
-}
-
-@keyframes l1 {
-  0%  {background-size: 20% 100%,20% 100%,20% 100%}
-  33% {background-size: 20% 10% ,20% 100%,20% 100%}
-  50% {background-size: 20% 100%,20% 10% ,20% 100%}
-  66% {background-size: 20% 100%,20% 100%,20% 10% }
-  100%{background-size: 20% 100%,20% 100%,20% 100%}
-}
-
-
-.main {
+  gap: 16px;
   width: 100%;
-  height: auto;
-  font-size: 2rem;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    margin-top: 0rem;
 
-  @media screen and (max-width:768px) {
-    font-size: 1.3rem;
+    button {
+      width: 80%;
+    }
   }
+}
+
+.tab-button {
+  flex: 1;
+  padding: 0.5rem;
+  text-align: center;
+  border: none;
+  border-radius: 8px;
+  background: #e3e3e3;
+  color: #333;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.tab-button.active {
+  background: #1976d2;
+  color: white;
+}
+
+.tab-content {
+  flex: 1;
+  margin-top: 16px;
 }
 
 .main_body {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-}
-
-.sec {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-h4 {
-  padding-right: 1rem;
-}
-
-p {
-  margin-block: 0.5rem;
-}
-
-form {
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
 }
-
+.main_body,
+input,
 button {
-  margin: 0.5rem auto;
-  margin-top: 0.5rem;
-  font-size: 1.5rem;
-  border-radius: 0.5rem;
-
-  @media screen and (max-width:768px) {
-    font-size: 1rem;
+  font-size: $large_fonts;
+  @media screen and (max-width: 768px) {
+    font-size: $small_fonts;
   }
+}
 
-  padding: 0.5rem 2rem;
+.batch-info {
+  margin: 0 0 2rem 0;
+  background-color: rgb(33, 150, 163);
+  text-align: center;
+  color: black;
+  padding: 1rem 0;
+  font-size: $large_fonts;
+  @media screen and (max-width: 768px) {
+    font-size: $small_fonts;
+  }
+}
+
+.input-group {
+  display: flex;
+  margin-bottom: 24px;
 }
 
 input {
-  width: 20rem;
-  height: 1.5rem;
-  margin-block: 0.5rem;
-  padding: 0.8rem 1.2rem;
-  border: 2px solid gray;
-  font-size: 1.5rem;
-  border-radius: 0.5rem;
-
-  @media screen and (max-width:768px) {
-    font-size: 1rem;
-  }
-
-  color: black;
-
-  &[type="date"] {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-  }
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
 }
-.buttons{
+.mat-datepicker-toggle {
   display: flex;
-  justify-content: space-between;
+  padding: 0 1rem;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(33, 150, 163);
 }
 
-table,
-th,
-td {
-  border: 1px solid black;
+.buttons {
+  display: flex;
+  margin: 1rem;
+  gap: 16px;
+}
+
+.button {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 8px;
+  background: #1976d2;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.button.reset {
+  background: #f44336;
+}
+
+.button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.bbd-table {
+  width: 100%;
   border-collapse: collapse;
 }
-table{
-  width: 90%;
-  margin: 0.5rem auto;
+
+.bbd-table th,
+.bbd-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
 }
 
-td {
-  padding: 0.5rem;
+.bbd-table th {
+  background: #f4f4f4;
+}
+
+.bbd-table td {
+  background: #fff;
+}
+
+.footer {
+  font-size: $small_fonts;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  right: 0;
+  left: 0;
+  @media screen and (max-width: 768px) {
+    position: relative;
+  }
 }

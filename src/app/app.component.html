@@ -3,68 +3,146 @@
     <div class="main_loader" *ngIf="!isVisible">
       <div class="loader"></div>
     </div>
+    
+    <div class="card">
+      <div class="tab-buttons">
+        <button
+          class="tab-button"
+          [class.active]="tab === 'bbd'"
+          (click)="searchTab('bbd')"
+        >
+          Calculate BBD
+        </button>
+        <button
+          class="tab-button"
+          [class.active]="tab === 'date'"
+          (click)="searchTab()"
+        >
+          Find Date
+        </button>
+      </div>
+      <div class="tab-content">
+        <div class="main_body" *ngIf="isVisible && tab === 'bbd'">
+          <p class="batch-info">
+            <strong>Batch:</strong> {{ batch }}<br />
+            <strong>Day Letter:</strong> {{ dayLetter }}
+          </p>
 
-    <div class="main_body" *ngIf="isVisible">
+          <form [formGroup]="myForm" (ngSubmit)="result()" class="form">
+            <div class="input-group">
+              <input
+                matInput
+                [matDatepicker]="picker"
+                (click)="activateToggle(picker)"
+                formControlName="dateValue"
+                placeholder="Choose a Date"
+              />
+              <mat-datepicker-toggle
+                matIconSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </div>
+              <input
+              type="number"
+              id="nextDay"
+              class="nextDay"
+              formControlName="numberValue"
+              placeholder="Shelf Life"
+              />
 
-      <p>Batch:- {{ year }}{{ daycount }}<br /></p>
-      <p>Day Letter:- {{ dayLetter }}<br /></p>
+            <div class="buttons">
+              <button
+                class="button shadow"
+                mat-raised-button
+                [disabled]="myForm.invalid"
+                type="submit"
+              >
+                Calculate
+              </button>
+              <button
+                class="button shadow reset"
+                mat-raised-button
+                type="reset"
+                (click)="julianReset()"
+              >
+                Reset
+              </button>
+            </div>
+          </form>
 
-      <form [formGroup]="myForm" (ngSubmit)="result()">
-        <div class="sec">
-          <input matInput [matDatepicker]="picker" (click)="activateToggle(picker)" formControlName="dateValue"
-            placeholder="Choose a Date">
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
+          <p class="calculated-date">
+            <strong *ngIf="calDya">Calculated Date:</strong> {{ calDya | date }}
+          </p>
+
+          <table class="bbd-table">
+            <thead>
+              <tr>
+                <th colspan="2">
+                  <h4>Pre Calculated BBD</h4>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>30 Days: {{ thirteeDays | date }}</td>
+                <td>50 Days: {{ fiftyDays | date }}</td>
+              </tr>
+              <tr>
+                <td>63 Days: {{ sixtyThreeDays | date }}</td>
+                <td>90 Days: {{ nineTee | date }}</td>
+              </tr>
+              <tr>
+                <td>120 Days: {{ oneTwoDays | date }}</td>
+                <td>150 Days: {{ oneFiveDays | date }}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <!-- <div class="sec">
-          <input type="date" id="date" class="date" formControlName="dateValue" placeholder="Select Date" />
-        </div> -->
-        <div class="sec">
-          <input type="number" id="nextDay" class="nextDay" formControlName="numberValue" placeholder="Shelf Life" />
-        </div>
-        <div class="buttons">
-          <button class="button" mat-flat-button [disabled]="myForm.invalid" type="submit">
-            Calculate
-          </button>
-          <button class="button" mat-flat-button type="reset">
-            Clear
-          </button>
-        </div>
-      </form>
 
-      <p *ngIf="calDya">Calculated Date:- {{ calDya | date }}</p>
-
-      <table>
-        <th colspan="2" align="center">
-          <tr>
-            <h4>Pre Calculated BBD</h4>
-          </tr>
-        </th>
-        <tr>
-          <td>
-            <p>30 Days: - {{ thirteeDays | date }}</p>
-          </td>
-          <td>
-            <p>50 Days: - {{ fiftyDays | date }}</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>63 Days: - {{ sixtyThreeDays | date }}</p>
-          </td>
-          <td>
-            <p>90 Days: - {{ nineTee | date }}</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>120 Days: - {{ oneTwoDays | date }}</p>
-          </td>
-          <td>
-            <p>150 Days: - {{ oneFiveDays | date }}</p>
-          </td>
-        </tr>
-      </table>
+        <div class="main_body" *ngIf="isVisible && tab === 'date'">
+          <form
+            [formGroup]="julianCal"
+            (ngSubmit)="calculateJulian()"
+            class="form mt-2"
+          >
+            <div class="input-group">
+              <input
+                matInput
+                formControlName="julian"
+                maxlength="5"
+                placeholder="Enter batch code"
+              />
+            </div>
+            <div class="buttons">
+              <button
+                class="button shadow"
+                mat-raised-button
+                [disabled]="julianCal.invalid"
+                type="submit"
+              >
+                Calculate
+              </button>
+              <button
+                class="button shadow reset"
+                mat-raised-button
+                type="reset"
+                (click)="julianReset('julian')"
+              >
+                Reset
+              </button>
+            </div>
+          </form>
+          <p class="calculated-date">
+            <strong *ngIf="julianDates">JULIAN Date:</strong>
+            {{ julianDates | date }}
+          </p>
+        </div>
+      </div>
     </div>
   </div>
+  <div class="footer">
+    <p>@copyright Vishwas Prajapati</p>
+  </div>
 </div>
+
