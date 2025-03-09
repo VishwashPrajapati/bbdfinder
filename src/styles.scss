@@ -6,11 +6,16 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background-color: #f2f7d2;
   font-family: monospace;
-  
 }
-
 .mt-2{
   margin-top: 2rem;
+}
+.mat-dialog-container{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 80% !important;
+  height: 80% !important;
+  transform: translate(-50%,-50%) !important;
 }

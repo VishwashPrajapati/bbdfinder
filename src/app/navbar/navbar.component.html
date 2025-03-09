@@ -1,0 +1,15 @@
+<div class="nav">
+  <div class="logo">BBDSolution</div>
+  <button class="menuIcon" mat-button [matMenuTriggerFor]="menu">+</button>
+</div>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item routerLink="/calcbbbd" routerLinkActive="active">
+    Calc BBD
+  </button>
+  <button mat-menu-item routerLink="/batchfinder" routerLinkActive="active">
+    batchFinder
+  </button>
+  <!-- <button mat-menu-item routerLink="/records" routerLinkActive="active">
+    Records
+  </button> -->
+</mat-menu>

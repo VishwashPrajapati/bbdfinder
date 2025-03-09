@@ -1,0 +1,20 @@
+$large_fonts: 2rem;
+$small_fonts: 1.2rem;
+.nav{
+    padding: 0rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    line-height: 8vh;
+    .logo{
+        font-size: $small_fonts;
+    }
+    .menuIcon{
+        font-size: $large_fonts;
+    }
+}
+button{
+    font-size: $small_fonts;
+}
+.active{
+    color: #1976d2;
+}

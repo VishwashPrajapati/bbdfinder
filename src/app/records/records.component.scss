@@ -1,0 +1,134 @@
+$large_fonts: 2rem;
+$small_fonts: 1.2rem;
+
+.main {
+  margin: 0 auto;
+  // width: 80%;
+  margin-top: 2rem;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    margin-top: 0rem;
+  }
+}
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  height: auto;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.calculated-date {
+  margin: 0.8rem 0;
+  text-align: center;
+}
+
+.tab-button.active {
+  background: #1976d2;
+  color: white;
+}
+
+.tab-content {
+  flex: 1;
+  margin-top: 16px;
+}
+
+.main_body {
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.main_body,
+input,
+button {
+  font-size: $large_fonts;
+  @media screen and (max-width: 768px) {
+    font-size: $small_fonts;
+  }
+}
+
+.batch-info {
+  margin: 0 0 2rem 0;
+  background-color: rgb(33, 150, 163);
+  text-align: center;
+  color: black;
+  padding: 1rem 0;
+  font-size: $large_fonts;
+  @media screen and (max-width: 768px) {
+    font-size: $small_fonts;
+  }
+}
+
+.input-group {
+  display: flex;
+  margin-bottom: 24px;
+}
+
+input {
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.mat-datepicker-toggle {
+  display: flex;
+  padding: 0 1rem;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(33, 150, 163);
+}
+
+.buttons {
+  display: flex;
+  margin: 1rem;
+  gap: 16px;
+}
+
+.button {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 8px;
+  background: #1976d2;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.button.reset {
+  background: #f44336;
+}
+
+.button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.bbd-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.bbd-table th,
+.bbd-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+.bbd-table th {
+  background: #f4f4f4;
+}
+
+.bbd-table td {
+  background: #fff;
+}
