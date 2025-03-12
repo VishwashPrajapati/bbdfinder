@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AppService } from './app.service';
 
 @Component({
   selector: 'app-root',
@@ -33,7 +34,9 @@ export class AppComponent {
   myForm: FormGroup;
   julianCal: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  darkMode = false;
+
+  constructor(private fb: FormBuilder,private service:AppService) {
     this.today = new Date();
     this.myForm = this.fb.group({
       dateValue: [this.today, Validators.required],
@@ -46,8 +49,14 @@ export class AppComponent {
       this.letter[this.days.indexOf(this.today.toString().split(' ')[0])];
 
     this.getData(this.today);
+    this.service.dark.subscribe((res)=>{
+      console.log(res)
+      this.darkMode = res
+    })
   }
-  OnInit() {}
+  OnInit() {
+    
+  }
   activateToggle(ref: any) {
     ref.opened = true;
   }

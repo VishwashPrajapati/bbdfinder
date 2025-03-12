@@ -18,7 +18,6 @@ import { CalcbbdComponent } from './calcbbd/calcbbd.component';
 import { BatchfinderComponent } from './batchfinder/batchfinder.component';
 import { RecordsComponent } from './records/records.component';
 import {MatDialogModule} from '@angular/material/dialog';
-
 @NgModule({
   declarations: [AppComponent, NavbarComponent, CalcbbdComponent, BatchfinderComponent, RecordsComponent],
   imports: [
@@ -35,7 +34,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatButtonModule,
     MatMenuModule,
     AppRoutingModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

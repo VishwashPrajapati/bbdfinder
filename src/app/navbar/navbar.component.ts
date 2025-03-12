@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-navbar',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-
-  constructor() { }
+  dark = false;
+  constructor(private service : AppService) { }
 
   ngOnInit(): void {
+  }
+
+  darkMode(value:boolean){
+    this.dark = value
+    this.service.dark.next(value)
   }
 
 }

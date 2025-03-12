@@ -1,6 +1,10 @@
 <div class="nav">
   <div class="logo">BBDSolution</div>
-  <button class="menuIcon" mat-button [matMenuTriggerFor]="menu">+</button>
+  <div class="menuIcon">
+    <i class="fa-solid fa-sun" (click)="darkMode(false)" *ngIf="dark"></i>
+    <i class="fa-solid fa-moon" (click)="darkMode(true)" *ngIf="!dark"></i>
+    <button class="menuIcon" mat-button [matMenuTriggerFor]="menu">+</button>
+  </div>
 </div>
 <mat-menu #menu="matMenu">
   <button mat-menu-item routerLink="/calcbbbd" routerLinkActive="active">

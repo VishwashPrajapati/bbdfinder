@@ -1,10 +1,11 @@
 $large_fonts: 2rem;
 $small_fonts: 1.2rem;
+$primary_color: rgb(159 161 161);
 
 .main {
   margin: 0 auto;
-  // width: 80%;
-  margin-top: 2rem;
+  width: 70%;
+  // margin-top: 2rem;
 
   @media screen and (max-width: 768px) {
     width: 100%;
@@ -12,9 +13,9 @@ $small_fonts: 1.2rem;
   }
 }
 .card {
-  background: #fff;
+  // background: #fff;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  // box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   height: auto;
   padding: 32px;
   display: flex;
@@ -24,7 +25,7 @@ $small_fonts: 1.2rem;
   box-sizing: border-box;
 }
 .calculated-date {
-  margin: 0.8rem 0;
+  margin:0 0 0.8rem 0;
   text-align: center;
 }
 
@@ -35,11 +36,11 @@ $small_fonts: 1.2rem;
 
 .tab-content {
   flex: 1;
-  margin-top: 16px;
+  // margin-top: 16px;
 }
 
 .main_body {
-  background: #f9f9f9;
+  // background: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   display: flex;
@@ -57,7 +58,7 @@ button {
 
 .batch-info {
   margin: 0 0 2rem 0;
-  background-color: rgb(33, 150, 163);
+  background-color: $primary_color;
   text-align: center;
   color: black;
   padding: 1rem 0;
@@ -74,17 +75,19 @@ button {
 
 input {
   padding: 16px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  border: 1px solid #585656;
+  // border-radius: 8px;
   width: 100%;
   box-sizing: border-box;
+  margin: 0px;
+
 }
 .mat-datepicker-toggle {
   display: flex;
   padding: 0 1rem;
   justify-content: center;
   align-items: center;
-  background-color: rgb(33, 150, 163);
+  background-color: $primary_color;
 }
 
 .buttons {
@@ -105,7 +108,7 @@ input {
 }
 
 .button.reset {
-  background: #f44336;
+  background: #7b7878;
 }
 
 .button:disabled {
@@ -120,7 +123,7 @@ input {
 
 .bbd-table th,
 .bbd-table td {
-  border: 1px solid #ddd;
+  border: 1px solid $primary_color;
   padding: 12px;
   text-align: center;
 }

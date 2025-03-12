@@ -1,7 +1,7 @@
 <div class="main_loader" *ngIf="!isVisible">
   <div class="loader"></div>
 </div>
-<div class="main_wrap">
+<div class="main_wrap" [ngClass]="{'dark':darkMode}">
   <nav>
     <app-navbar></app-navbar>
   </nav>

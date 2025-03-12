@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 
 body {
   box-sizing: border-box;
@@ -8,14 +7,43 @@ body {
   padding: 0;
   font-family: monospace;
 }
-.mt-2{
+.mt-2 {
   margin-top: 2rem;
 }
-.mat-dialog-container{
+.mat-dialog-container {
   position: absolute;
   left: 50%;
   top: 50%;
   width: 80% !important;
   height: 80% !important;
-  transform: translate(-50%,-50%) !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+.mat-calendar-body-selected{
+  background-color: black;
+}
+
+.main_wrap {
+  &.dark {
+    .card,
+    .main_body {
+      background: black !important;
+      border-radius: 0px;
+      color: white;
+    }
+    .bbd-table td,
+    .bbd-table th {
+      background: black !important;
+    }
+    input {
+      color: white;
+      background-color: black;
+      border-radius: 0px;
+      margin: 0px;
+    }
+    input::placeholder{
+      color: white;
+    }
+    
+  }
 }

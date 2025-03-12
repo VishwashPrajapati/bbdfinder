@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AppService } from '../app.service';
 
 
 @Component({
@@ -34,7 +35,7 @@ title = 'bbdfinder';
   myForm: FormGroup;
   julianCal: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private service:AppService) {
     this.today = new Date();
     this.myForm = this.fb.group({
       dateValue: [this.today, Validators.required],
@@ -47,6 +48,9 @@ title = 'bbdfinder';
       this.letter[this.days.indexOf(this.today.toString().split(' ')[0])];
 
     this.getData(this.today);
+    this.service.dark.subscribe((value)=>{
+      console.log(value)
+    })
   }
   OnInit() {}
   activateToggle(ref: any) {
