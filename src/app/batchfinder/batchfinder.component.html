@@ -1,6 +1,6 @@
     <div class="main">
       <div class="card">
-        <div class="tab-content">
+        <div>
           <div class="main_body">
             <form
               [formGroup]="julianCal"
@@ -11,7 +11,9 @@
                 <input
                   matInput
                   formControlName="julian"
-                  maxlength="5"
+                  type="number"
+                  maxLength="5"
+                  pattern="^[-+]?\d{0,5}(\.\d{0,2})?$"
                   placeholder="Enter batch code"
                 />
               </div>
@@ -28,6 +30,7 @@
                   class="button shadow reset"
                   mat-raised-button
                   type="reset"
+                  (click)='julianReset()'
                 >
                   Reset
                 </button>

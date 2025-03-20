@@ -2,41 +2,72 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppService } from '../app.service';
 
-
 @Component({
   selector: 'app-calcbbd',
   templateUrl: './calcbbd.component.html',
-  styleUrls: ['./calcbbd.component.scss']
+  styleUrls: ['./calcbbd.component.scss'],
 })
 export class CalcbbdComponent {
-title = 'bbdfinder';
+  title = 'bbdfinder';
 
   year: number | string = '';
-  day: any | undefined;
   tab = 'bbd';
   batch: any | undefined;
-  daycount: any;
-  thirteeDays: any | undefined;
-  fiftyDays: any | undefined;
-  sixtyThreeDays: any | undefined;
-  nineTee: any | undefined;
-  oneTwoDays: any | undefined;
-  oneFiveDays: any | undefined;
   calDya: any | undefined;
-  today: any | undefined;
+  today = new Date();
   isVisible = false;
-
-  julianDates: any | undefined;
 
   days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   letter = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
   dayLetter = '';
 
+  calculatedDaysData = [
+    {
+      name: 30,
+      data: '',
+    },
+    {
+      name: 50,
+      data: '',
+    },
+    {
+      name: 63,
+      data: '',
+    },
+    {
+      name: 70,
+      data: '',
+    },
+    {
+      name: 72,
+      data: '',
+    },
+    {
+      name: 86,
+      data: '',
+    },
+    {
+      name: 90,
+      data: '',
+    },
+    {
+      name: 112,
+      data: '',
+    },
+    {
+      name: 120,
+      data: '',
+    },
+    {
+      name: 150,
+      data: '',
+    },
+  ];
+
   myForm: FormGroup;
   julianCal: FormGroup;
 
-  constructor(private fb: FormBuilder,private service:AppService) {
-    this.today = new Date();
+  constructor(private fb: FormBuilder, private service: AppService) {
     this.myForm = this.fb.group({
       dateValue: [this.today, Validators.required],
       numberValue: ['', Validators.required],
@@ -48,9 +79,6 @@ title = 'bbdfinder';
       this.letter[this.days.indexOf(this.today.toString().split(' ')[0])];
 
     this.getData(this.today);
-    this.service.dark.subscribe((value)=>{
-      console.log(value)
-    })
   }
   OnInit() {}
   activateToggle(ref: any) {
@@ -74,67 +102,41 @@ title = 'bbdfinder';
     const currDate: any = new Date(data);
     const dayDifference = (currDate - startdate) / (1000 * 60 * 60 * 24);
 
-    const calculateFixedDates = (days: any) =>
-      this.getFixedDate(currDate, days);
-    [
-      this.thirteeDays,
-      this.fiftyDays,
-      this.sixtyThreeDays,
-      this.nineTee,
-      this.oneTwoDays,
-      this.oneFiveDays,
-    ] = [30, 50, 63, 90, 120, 150].map(calculateFixedDates);
+    this.calculatedDaysData.map((obj, index) => {
+      this.getFixedDate(currDate, obj.name);
+      this.calculatedDaysData[index].data = String(
+        new Date(this.getFixedDate(currDate, obj.name))
+      );
+    });
 
-    this.daycount = Math.min(Math.floor(dayDifference) + 1, 365)
+    const daycount = Math.min(Math.floor(dayDifference) + 1, 365)
       .toString()
       .padStart(3, '0');
-    this.batch = `${year}${this.daycount}`;
+    this.batch = `${year}${daycount}`;
     this.isVisible = true;
+  }
+
+  getRows(data: any[]) {
+    let rows = [];
+    for (let i = 0; i < data.length; i += 2) {
+      rows.push(data.slice(i, i + 2));
+    }
+    return rows;
+  }
+
+  onDateChange(value: Date) {
+    console.log(value);
+    this.getData(value);
+    this.dayLetter =
+      this.letter[this.days.indexOf(value.toString().split(' ')[0])];
   }
 
   calculateDay(day: any, value: any) {
     this.calDya = this.getFixedDate(day, value);
   }
 
-  isLeapYear(year: number): boolean {
-    return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
-  }
-
-  calculateJulian(): void {
-    const julian = this.julianCal.value.julian.toString();
-
-    if (julian.length <= 3) {
-      this.julianDates = new Date(
-        new Date().getFullYear(),
-        0,
-        +julian
-      ).getTime();
-    } else if (julian.length === 4) {
-      alert('Please enter at least 3 digits or 5 digits');
-    } else {
-      const year = 2000 + +julian.slice(0, 2);
-      const dayOfYear = +julian.slice(2);
-      this.julianDates = new Date(year, 0, dayOfYear).getTime();
-    }
-  }
-
-  julianReset(type?: string) {
-    if (type === 'julian') {
-      this.julianCal.reset();
-      this.julianDates = '';
-    } else {
-      this.myForm.reset();
-      this.calDya = '';
-    }
-  }
-  searchTab(type?:string){
-
-
-    if (type === 'bbd') {
-      this.tab = type;
-
-    } else {
-      this.tab = 'date';
-    }
+  julianReset() {
+    this.onDateChange(this.today);
+    this.myForm.setValue({ dateValue: this.today, numberValue: '' });
   }
 }

@@ -36,7 +36,7 @@ export class AppComponent {
 
   darkMode = false;
 
-  constructor(private fb: FormBuilder,private service:AppService) {
+  constructor(private fb: FormBuilder, private service: AppService) {
     this.today = new Date();
     this.myForm = this.fb.group({
       dateValue: [this.today, Validators.required],
@@ -49,14 +49,11 @@ export class AppComponent {
       this.letter[this.days.indexOf(this.today.toString().split(' ')[0])];
 
     this.getData(this.today);
-    this.service.dark.subscribe((res)=>{
-      console.log(res)
-      this.darkMode = res
-    })
+    this.service.dark.subscribe((res) => {
+      this.darkMode = res;
+    });
   }
-  OnInit() {
-    
-  }
+  OnInit() {}
   activateToggle(ref: any) {
     ref.opened = true;
   }
@@ -131,12 +128,9 @@ export class AppComponent {
       this.calDya = '';
     }
   }
-  searchTab(type?:string){
-
-
+  searchTab(type?: string) {
     if (type === 'bbd') {
       this.tab = type;
-
     } else {
       this.tab = 'date';
     }

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup,Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-batchfinder',
   templateUrl: './batchfinder.component.html',
-  styleUrls: ['./batchfinder.component.scss']
+  styleUrls: ['./batchfinder.component.scss'],
 })
 export class BatchfinderComponent {
   julianDates: any | undefined;
@@ -31,8 +31,7 @@ export class BatchfinderComponent {
       this.julianDates = new Date(year, 0, dayOfYear).getTime();
     }
   }
-  julianReset(type?: string) {
-      this.julianCal.reset();
-      this.julianDates = '';
+  julianReset() {
+    this.julianDates = '';
   }
 }
