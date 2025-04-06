@@ -9,6 +9,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class BatchfinderComponent {
   julianDates: any | undefined;
   julianCal: FormGroup;
+
+  
   constructor(private fb: FormBuilder) {
     this.julianCal = this.fb.group({
       julian: ['', Validators.required],

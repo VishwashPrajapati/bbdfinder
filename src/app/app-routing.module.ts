@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CalcbbdComponent } from './calcbbd/calcbbd.component';
 import { BatchfinderComponent } from './batchfinder/batchfinder.component';
 import { RecordsComponent } from './records/records.component';
+import { InsertdataComponent } from './insertdata/insertdata.component';
 const appRoutes: Routes = [
   {
     path: 'calcbbbd',
@@ -17,6 +18,10 @@ const appRoutes: Routes = [
   {
     path: 'records',
     component: RecordsComponent,
+  },
+  {
+    path: 'insert',
+    component: InsertdataComponent,
   },
   {
     path: '',

@@ -1,0 +1,42 @@
+<div class="main">
+  <div class="card">
+    <div>
+      <div class="main_body">
+        <form
+          [formGroup]="formData"
+          (ngSubmit)="add()"
+          class="form mt-2"
+        >
+      
+      
+          <div class="input-group">
+            <input
+              matInput
+              formControlName="name"
+              type="text"
+              placeholder="Enter batch code"
+            />
+          </div>
+          <div class="buttons">
+            <button
+              class="button shadow"
+              mat-raised-button
+              [disabled]="formData.invalid"
+              type="submit"
+            >
+              Calculate
+            </button>
+            <button
+              class="button shadow reset"
+              mat-raised-button
+              type="reset"
+            >
+              Reset
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

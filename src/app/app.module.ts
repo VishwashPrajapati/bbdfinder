@@ -9,8 +9,10 @@ import { MatButtonModule, MatNativeDateModule } from '@angular/material';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
 import {MatMenuModule} from '@angular/material/menu';
-
-
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
+import {AsyncPipe} from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -18,8 +20,9 @@ import { CalcbbdComponent } from './calcbbd/calcbbd.component';
 import { BatchfinderComponent } from './batchfinder/batchfinder.component';
 import { RecordsComponent } from './records/records.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { InsertdataComponent } from './insertdata/insertdata.component';
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, CalcbbdComponent, BatchfinderComponent, RecordsComponent],
+  declarations: [AppComponent, NavbarComponent, CalcbbdComponent, BatchfinderComponent, RecordsComponent, InsertdataComponent],
   imports: [
     BrowserModule,
     MatTabsModule,
@@ -35,6 +38,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatMenuModule,
     AppRoutingModule,
     MatDialogModule,
+    MatAutocompleteModule,
+    AsyncPipe,
   ],
   providers: [],
   bootstrap: [AppComponent],

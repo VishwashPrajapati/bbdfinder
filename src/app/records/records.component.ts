@@ -15,8 +15,6 @@ import {
 })
 export class RecordsComponent {
 
-title = 'bbdfinder';
-
   year: number | string = '';
   day: any | undefined;
   tab = 'bbd';
