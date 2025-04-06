@@ -1,10 +1,11 @@
 <div class="main">
   <div class="card">
     <div>
-      <div class="main_body" *ngIf="isVisible && tab === 'bbd'">
+      <div class="main_body">
         <p class="batch-info">
-          <strong>Batch:</strong> {{ batch }}<br />
-          <strong>Day Letter:</strong> {{ dayLetter }}
+         <span><strong>Batch:</strong> {{ batch }}<br /></span> 
+         <span><strong>Day Letter:</strong> {{ dayLetter }}<br /></span>
+          <span *ngIf="backdayletter"><strong>Backdate Day Letter:</strong> {{ backdayletter }}<br /></span>
         </p>
 
         <form [formGroup]="myForm" (ngSubmit)="result()" class="form">
@@ -63,9 +64,9 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let row of getRows(calculatedDaysData); let i = index">
+            <tr *ngFor="let row of getRows(filteredArray); let i = index">
               <td *ngFor="let x of row">
-                {{ x.name }} Days: <br />
+                {{ x.days }} Days: <br />
                 {{ x.data | date }}
               </td>
             </tr>
