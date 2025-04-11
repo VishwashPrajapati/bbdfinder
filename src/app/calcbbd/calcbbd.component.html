@@ -4,8 +4,7 @@
       <div class="main_body">
         <p class="batch-info">
          <span><strong>Batch:</strong> {{ batch }}<br /></span> 
-         <span><strong>Today's Letter:</strong> {{ dayLetter }}<br /></span>
-          <span *ngIf="backdayletter"><strong>Backdate Day Letter:</strong> {{ backdayletter }}<br /></span>
+         <span><strong>Day Letter:</strong> {{ dayLetter }}<br /></span>
         </p>
 
         <form [formGroup]="myForm" (ngSubmit)="result()" class="form">

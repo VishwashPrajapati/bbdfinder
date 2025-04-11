@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AppService } from '../app.service';
 
 import { daysData,letter,days, daysDataInterface } from '../daysData';
@@ -18,7 +18,6 @@ export class CalcbbdComponent {
   isVisible = false;
 
   dayLetter = '';
-  backdayletter = '';
 
   filteredArray: daysDataInterface[] = [];
 
@@ -44,9 +43,8 @@ export class CalcbbdComponent {
   }
 
   result() {
-    const {dateValue,numberValue} = this.myForm.value;
     this.getData(this.myForm.value.dateValue);
-    this.calculateDay(dateValue,numberValue);
+    this.calculateDay(this.myForm.value.dateValue,this.myForm.value.numberValue);
   }
 
   getFixedDate(selectedDate: Date, nextDay: number) {
@@ -54,24 +52,24 @@ export class CalcbbdComponent {
   }
 
   getData(data: Date) {
-    const year = new Date(data).getFullYear() % 100;
-
-    const startdate:Date = new Date(`Jan 01, ${year}`);
-    const currDate:Date = new Date(data);
-    const dayDifference:number = (currDate.getTime() - startdate.getTime()) / (1000 * 60 * 60 * 24);
+    const fullYear = new Date(data).getFullYear();
+    const year = fullYear % 100;;
+    this.today.setHours(0, 0, 0, 0);
+    const startdate:Date = new Date(fullYear, 0, 1);
+    const dayDifference:number = (data.getTime() - startdate.getTime()) / (1000 * 60 * 60 * 24) + 1;
 
     daysData.map((obj, index) => {
-      this.getFixedDate(currDate, obj.days);
+      this.getFixedDate(data, obj.days);
       daysData[index].data = String(
-        new Date(this.getFixedDate(currDate, obj.days))
+        new Date(this.getFixedDate(data, obj.days))
       );
     });
 
     this.filteredArray = daysData.sort((a, b) => a.days - b.days);  
 
     const daycount = Math.min(Math.floor(dayDifference) + 1, 365)
-      .toString()
-      .padStart(3, '0');
+  .toString()
+  .padStart(3, '0');
     this.batch = `${year}${daycount}`;
     this.isVisible = true;
   }
@@ -84,17 +82,11 @@ export class CalcbbdComponent {
     return rows;
   }
 
-  onDateChange(value: Date) {
+  onDateChange(value:Date) {
+    console.log(value)
     this.dayLetter =
     letter[days.indexOf(this.today.toString().split(' ')[0])];
-    if(this.today.toLocaleDateString("en-US") !== value.toLocaleDateString("en-US")){
-      this.backdayletter =
-      letter[days.indexOf(value.toString().split(' ')[0])];
-    } else{
-      this.backdayletter = '';
-    }
     this.getData(value);
-    
   }
 
   calculateDay(day: Date, value: number) {
