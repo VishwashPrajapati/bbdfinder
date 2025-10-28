@@ -6,6 +6,7 @@ import { CalcbbdComponent } from './calcbbd/calcbbd.component';
 import { BatchfinderComponent } from './batchfinder/batchfinder.component';
 import { RecordsComponent } from './records/records.component';
 import { InsertdataComponent } from './insertdata/insertdata.component';
+import { GiveawayComponent } from './giveaway/giveaway.component';
 const appRoutes: Routes = [
   {
     path: 'calcbbbd',
@@ -22,6 +23,10 @@ const appRoutes: Routes = [
   {
     path: 'insert',
     component: InsertdataComponent,
+  },
+  {
+    path: 'giveaway',
+    component: GiveawayComponent,
   },
   {
     path: '',

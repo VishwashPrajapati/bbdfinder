@@ -1,0 +1,54 @@
+<div class="main">
+  <div class="card">
+    <div>
+      <div class="main_body">
+        <form
+          [formGroup]="giveawaycount"
+          (ngSubmit)="calculateGiveaway()"
+          class="form mt-2"
+        >
+        <div class="input-group">
+            <mat-form-field>
+              <mat-label>Choose Weight</mat-label>
+              <mat-select formControlName="weight">
+                <mat-option *ngFor="let weight of weightlist" value="{{weight.value}}">{{weight.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="input-group">
+            <input
+              matInput
+              formControlName="actualweight"
+              type="number"
+              pattern="^[-+]?\d{0,5}(\.\d{0,2})?$"
+              placeholder="Average weight"
+            />
+          </div>
+          
+          <div class="buttons">
+            <button
+              class="button shadow"
+              mat-raised-button
+              [disabled]="giveawaycount.invalid"
+              type="submit"
+            >
+              Calculate
+            </button>
+            <button
+              class="button shadow reset"
+              mat-raised-button
+              type="reset"
+              (click)="julianReset()"
+            >
+              Reset
+            </button>
+          </div>
+        </form>
+        <p class="calculated-date">
+          <strong *ngIf="giveawayCal">Giveaway:</strong>
+          {{ giveawayCal | number }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

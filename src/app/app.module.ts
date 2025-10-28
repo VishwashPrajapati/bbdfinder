@@ -10,6 +10,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatSelectModule} from '@angular/material/select';
+
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {AsyncPipe} from '@angular/common';
@@ -21,8 +23,9 @@ import { BatchfinderComponent } from './batchfinder/batchfinder.component';
 import { RecordsComponent } from './records/records.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { InsertdataComponent } from './insertdata/insertdata.component';
+import { GiveawayComponent } from './giveaway/giveaway.component';
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, CalcbbdComponent, BatchfinderComponent, RecordsComponent, InsertdataComponent],
+  declarations: [AppComponent, NavbarComponent, CalcbbdComponent, BatchfinderComponent, RecordsComponent, InsertdataComponent, GiveawayComponent],
   imports: [
     BrowserModule,
     MatTabsModule,
@@ -33,6 +36,7 @@ import { InsertdataComponent } from './insertdata/insertdata.component';
     MatDatepickerModule,
     MatInputModule,
     MatFormFieldModule,
+    MatSelectModule,
     MatNativeDateModule,
     MatButtonModule,
     MatMenuModule,
